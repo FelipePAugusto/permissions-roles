@@ -12,7 +12,7 @@ volumes:
 services:
   app:
     build:
-      context: ./app #onde vai buscar o arquivo para ser buildado
+      context: . #onde vai buscar o arquivo para ser buildado
       dockerfile: Dockerfile #nome do arquivo do tipo dockerfile
     container_name: app
     restart: always
@@ -21,15 +21,15 @@ services:
     stdin_open: true
     tty: true
     volumes: 
-      - ./app:/var/www/html
+      - .:/var/www/html
     depends_on:
-      - mysql
+      - mysql-app
     networks:
       - permissions_roles-ambiente
       
-  mysql:
+  mysql-app:
     image: mysql:5.7
-    container_name: mysql
+    container_name: mysql-app
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password-root

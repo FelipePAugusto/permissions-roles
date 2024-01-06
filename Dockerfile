@@ -52,8 +52,8 @@ RUN composer install --optimize-autoloader --no-dev
 
 # Configurando as permissões
 RUN chown -R www-data:www-data /var/www/html
-# RUN chown -R www-data:www-data /var/www/html/storage
-# RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage
+RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
 
 RUN chmod -R 755 /var/www/html
 
