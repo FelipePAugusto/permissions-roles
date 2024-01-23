@@ -23,7 +23,6 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-
 Route::group(['middleware' => ['auth', 'verified', 'permission:post_create']], function(){
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
