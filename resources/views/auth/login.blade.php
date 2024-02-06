@@ -19,8 +19,8 @@
                     </div>
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
-
-                <div>
+                @vite(['resources/css/app.css'])
+                <div class="h-full">
                     <div class="flex items-center justify-between">
                         <label for="password" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Password') }}</label>
                         <div class="text-sm">
