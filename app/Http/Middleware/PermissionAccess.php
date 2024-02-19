@@ -17,7 +17,7 @@ class PermissionAccess
     public function handle(Request $request, Closure $next, $permission): Response
     {
         abort_if(
-            Auth::check() && !$request->user()->can($permission),
+            !Auth::check() && !$request->user()?->can($permission) || Auth::check() && !$request->user()?->can($permission),
             403,
             'Você não tem permissão'
         );

@@ -15,28 +15,36 @@ class PermissionSeeder extends Seeder
     {
         Permission::query()->insert([
             [
-                'name' => 'post_view'
+                'name' => 'post_view',
+                'label' => 'Ver Posts'
             ],
             [
-                'name' => 'post_create'
+                'name' => 'post_create',
+                'label' => 'Cadastrar Posts'
             ],
             [
-                'name' => 'post_update'
+                'name' => 'post_update',
+                'label' => 'Editar Posts'
             ],
             [
-                'name' => 'post_delete'
+                'name' => 'post_delete',
+                'label' => 'Excluir Posts'
             ],
             [
-                'name' => 'user_view'
+                'name' => 'user_view',
+                'label' => 'Ver Usuários'
             ],
             [
-                'name' => 'user_create'
+                'name' => 'user_create',
+                'label' => 'Cadastrar Usuários'
             ],
             [
-                'name' => 'user_update'
+                'name' => 'user_update',
+                'label' => 'Editar Usuários'
             ],
             [
-                'name' => 'user_delete'
+                'name' => 'user_delete',
+                'label' => 'Excluir Uusários'
             ],
         ]);
     }

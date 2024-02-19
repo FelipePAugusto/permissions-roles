@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,13 +46,20 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function password(): Attribute
+    public function posts(): HasMany
     {
-        return new Attribute(set: function($value) {
-            if(!empty($value) && !is_null($value)) {
-                return bcrypt($value);
-            }
-        });
+        return $this->hasMany(Post::class);
+    }
+    public function setPasswordAttribute($value)
+    {
+
+        if(!empty($value) && !is_null($value)) {
+            $this->attributes['password'] = bcrypt($value);
+        }
     }
     
+    public function getRoleAttribute()
+    {
+        return $this->roles->first()->name;
+    }
 }

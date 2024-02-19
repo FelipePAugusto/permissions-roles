@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::resource('users', UserController::class);
+Route::resource('post', PostController::class);
+Route::resource('role', RoleController::class);
+Route::resource('roles.permissions', PermissionController::class);
 
 // Route::group(['middleware' => ['auth', 'permission:post_create']], function(){
 //     Route::get('dashboard', DashboardController::class)->name('dashboard');
