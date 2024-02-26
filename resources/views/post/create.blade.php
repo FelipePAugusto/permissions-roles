@@ -14,7 +14,7 @@
         <form action="{{route('post.store')}}" method="post">
             @csrf
             <div class="grid gap-2 grid-cols-1">
-                @if(auth()->user()->hasRoles(['Admin', 'Super Admin']))
+                @if(auth()->user()->hasAllRoles(['Admin', 'Super Admin']))
                     @can('post_create')
                         <div class="mb-3">
                             <label for="user_id" class="block text-sm font-medium leading-6 text-gray-900">Autores</label>

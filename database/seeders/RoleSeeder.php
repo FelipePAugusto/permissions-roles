@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
+
 
 class RoleSeeder extends Seeder
 {
@@ -21,18 +22,32 @@ class RoleSeeder extends Seeder
             'name' => 'Admin'
         ]);
 
-        $admin->permissions()->attach([1,2,3,4,5,6,7,8]);
+        $admin->syncPermissions([
+            'post_view', 
+            'post_create', 
+            'post_update', 
+            'post_delete', 
+            'user_view', 
+            'user_create', 
+            'user_update', 
+            'user_delete'
+        ]);
 
         $user = Role::query()->create([
             'name' => 'User'
         ]);
 
-        $user->permissions()->attach(1);
+        $user->syncPermissions(['post_view']);
 
         $author = Role::query()->create([
             'name' => 'Author'
         ]);
 
-        $author->permissions()->attach([1,2,3,4]);
+        $author->syncPermissions([
+            'post_view', 
+            'post_create', 
+            'post_update', 
+            'post_delete'
+        ]);
     }
 }

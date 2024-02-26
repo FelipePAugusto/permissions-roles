@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Role;
-use App\Models\Permission;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -28,9 +28,9 @@ class PermissionController extends Controller
     {
         $permissions = collect($request->permissions);
         
-        $permissionIds = $permissions->filter(fn($permission) => $permission === 'on')->keys();
+        $permissionName = $permissions->filter(fn($permission) => $permission === 'on')->keys();
 
-        $role->permissions()->sync($permissionIds);
+        $role->syncPermissions($permissionName);
 
         return redirect()->route('roles.permissions.index', $role);
     }

@@ -9,7 +9,7 @@ class PostRequest extends FormRequest
 {
     public function prepareForValidation()
     {
-        if(!auth()->user()->hasRoles(['Admin', 'Super Admin'])) {
+        if(!auth()->user()->hasAllRoles(['Admin', 'Super Admin'])) {
             $this->merge([
                 'user_id' => auth()->id()
             ]);
@@ -34,7 +34,7 @@ class PostRequest extends FormRequest
             'user_id' => [
                 'exists:users,id',
                 Rule::requiredIf(function(){
-                    return auth()->user()->hasRoles(['Admin', 'Super Admin']);
+                    return auth()->user()->hasAllRoles(['Admin', 'Super Admin']);
                 })
             ],
             'title' => 'required',

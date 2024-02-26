@@ -18,7 +18,7 @@
                     <div class="flex h-6 items-center">
                         <input 
                             id="permissions.{{$permission->id}}" 
-                            name="permissions[{{$permission->id}}]" 
+                            name="permissions[{{$permission->name}}]" 
                             type="checkbox" 
                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                             @checked($role->permissions->contains($permission->id))

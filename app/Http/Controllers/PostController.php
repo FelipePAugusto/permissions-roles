@@ -24,7 +24,7 @@ class PostController extends Controller
     {
         $posts = Post::query()
             ->when(
-                !auth()->user()->hasRoles(['Admin', 'Super Admin']),
+                !auth()->user()->hasRole(['Admin', 'Super Admin']),
                 function($query) {
                     $query->where('user_id', auth()->id());
                 }

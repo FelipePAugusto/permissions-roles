@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'password' => 123
         ]);
 
-        $superAdmin->roles()->attach(1);
+        $superAdmin->assignRole('Super Admin');
 
         $admin = User::query()->create([
             'name' => 'Admin',
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             'password' => 123
         ]);
 
-        $admin->roles()->attach(2);
+        $admin->assignRole('Admin');
 
         $user = User::query()->create([
             'name' => 'Usuário',
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'password' => 123
         ]);
 
-        $user->roles()->attach(3);
+        $user->assignRole('User');
 
         $author = User::query()->create([
             'name' => 'Autor',
@@ -43,6 +43,6 @@ class UserSeeder extends Seeder
             'password' => 123
         ]);
 
-        $author->roles()->attach(4);
+        $author->assignRole('Author');
     }
 }
